@@ -14,7 +14,7 @@ public class Solution {
     static int[] rotLeft(int[] a, int d) {
 
         int n = a.length ;
-        if(n>0) {
+        if(n>1) {
             for (int i = 0; i < d; i++) {
                 int tmp = a[0];
                 a = Arrays.copyOfRange(a, 1, n+1);
