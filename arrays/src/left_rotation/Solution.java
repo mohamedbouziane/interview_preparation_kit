@@ -14,18 +14,15 @@ public class Solution {
     static int[] rotLeft(int[] a, int d) {
 
         int n = a.length ;
-        int[] resutlt = new int[n-1];
-        resutlt = Arrays.copyOfRange(a, 0, n);
         if(n>0) {
             for (int i = 0; i < d; i++) {
-                int tmp = resutlt[0];
-
-                resutlt = Arrays.copyOfRange(a, 1, n);
-                resutlt[n-1]= tmp;
+                int tmp = a[0];
+                a = Arrays.copyOfRange(a, 1, n+1);
+                a[n-1]= tmp;
 
             }
         }
-     return resutlt;
+        return a;
 
 
     }
