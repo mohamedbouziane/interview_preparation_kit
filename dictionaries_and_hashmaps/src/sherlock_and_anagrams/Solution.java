@@ -22,11 +22,10 @@ public class Solution {
                 char[] chars = s.substring(i,j).toCharArray();
                 Arrays.sort(    chars);
                 String str =  Arrays.toString(chars);
-                if(map.get(str)==null){
-                    map.put(str,0);
-                }else {
+
+                    // occurrence sum for each sorted substring
                     map.merge(str,1,Integer::sum);
-                }
+                
             }
 
         }
