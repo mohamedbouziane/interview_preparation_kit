@@ -14,6 +14,34 @@ public class Solution {
     static int sherlockAndAnagrams(String s) {
 
 
+
+        Map<String, Integer> map = new HashMap<>();
+
+        for (int i = 0; i < s.length(); i++) {
+            for (int j = i+1; j <= s.length(); j++) {
+                char[] chars = s.substring(i,j).toCharArray();
+                Arrays.sort(    chars);
+                String str =  Arrays.toString(chars);
+                if(map.get(str)==null){
+                    map.put(str,0);
+                }else {
+                    map.merge(str,1,Integer::sum);
+                }
+            }
+
+        }
+        /**
+         * s = kkkk
+         *
+         *  k -> occurrence = 4 --> sum of possible pairs is 6 = {(0,1), (0,2), (0,3), (1,2), (1,3), (2,3)}
+         *                      --> 6 = 4*(4-1)/2
+         *  kk -> occurrence = 3  --> sum of possible pairs is 3
+         *                        --> 3 = 3*(3-1)/2
+         *  kkk -> occurrence = 2 --> sum of possible pairs is 1
+         *                        --> 1 = 2*(2-1)/2
+         */
+
+        return map.values().stream().map(n->n*(n-1)/2).reduce(0,Integer::sum);
     }
 
     private static final Scanner scanner = new Scanner(System.in);
