@@ -16,18 +16,19 @@ public class Solution {
         Matcher m1 = p1.matcher(s);
 
         long sum =0;
-        // Compute token like aa, aaa, aaaa ...
+        // count token like aa, aaa, aaaa ...
         while (m1.find()){
             String mtch = m1.group();
             long l = mtch.length();
             sum+= l*(l-1)/2;
         }
-        // Compute token like aba, obo, nmn ...
+        // count token like aba, obo, nmn ...
         if(n>=3) {
             for (int i = 1; i <= n - 2; i++) {
                 if(s.charAt(i-1)==s.charAt(i+1)&& s.charAt(i)!=s.charAt(i+1)){
                     sum++;
                     int j = 2;
+                    //count token like aabaa, aaabaaa,  ...
                     while(i-j>=0 && i+j<=n-1 && s.charAt(i-j)==s.charAt(i-1) && s.charAt(i+j)==s.charAt(i-j)){
                         sum++;
                         j++;
