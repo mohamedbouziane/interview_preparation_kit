@@ -12,6 +12,32 @@ public class Solution {
     // Complete the substrCount function below.
     static long substrCount(int n, String s) {
 
+        Pattern p1 = Pattern.compile("([a-z])\\1{1,}");
+        Matcher m1 = p1.matcher(s);
+
+        long sum =0;
+        // Compute token like aa, aaa, aaaa ...
+        while (m1.find()){
+            String mtch = m1.group();
+            long l = mtch.length();
+            sum+= l*(l-1)/2;
+        }
+        // Compute token like aba, obo, nmn ...
+        if(n>=3) {
+            for (int i = 1; i <= n - 2; i++) {
+                if(s.charAt(i-1)==s.charAt(i+1)&& s.charAt(i)!=s.charAt(i+1)){
+                    sum++;
+                    int j = 2;
+                    while(i-j>=0 && i+j<=n-1 && s.charAt(i-j)==s.charAt(i-1) && s.charAt(i+j)==s.charAt(i-j)){
+                        sum++;
+                        j++;
+                    }
+                }
+            }
+        }
+
+       return sum + n ;
+
 
     }
 
