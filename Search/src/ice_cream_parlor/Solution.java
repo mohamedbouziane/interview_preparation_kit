@@ -19,7 +19,7 @@ public class Solution {
           int target = money -  cost[i];
            if(map.containsKey(target)){
                int j = i+1;
-               System.out.println(map.get(target)+ " " + i+1);
+               System.out.println(map.get(target)+ " " + j);
                break;
            }
            map.put(cost[i], i+1);
