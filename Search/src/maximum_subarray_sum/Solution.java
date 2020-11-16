@@ -3,7 +3,7 @@ package maximum_subarray_sum;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Scanner;
+import java.util.*;
 
 public class Solution {
 
@@ -11,32 +11,24 @@ public class Solution {
 
     // Complete the maximumSum function below.
     static long maximumSum(long[] a, long m) {
-
-
-        long[][] cal = new long[a.length][a.length];
-        long max = 0;
-        for (int i = 0; i < a.length; i++) {
-
-            for (int j = i; j < a.length; j++) {
-                if (i == j) {
-                    cal[i][j] = a[i] % m;
-                    if (cal[i][j] > max) {
-                        max = cal[i][j];
-                    }
-                } else {
-                    cal[i][j] = (cal[i][j - 1] + a[j]) % m;
-                    if (cal[i][j] > max) {
-                        max = cal[i][j];
-                    }
-                }
-
-                if (max == m - 1) {
-                    return max;
-                }
+        NavigableSet<Long> set = new TreeSet<>();
+        long prefix = 0;
+        long maximum = 0;
+        set.add(0L);
+        for(long l :a){
+            prefix = (prefix + l) % m;
+            maximum = Math.max(maximum, prefix);
+            Long it = set.higher(prefix);
+            if(it != null) {
+                maximum = Math.max(maximum, (prefix - it +m) );
             }
+            set.add(prefix);
         }
 
-        return max;
+        return maximum;
+
+
+
 
 
     }
